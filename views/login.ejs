@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>התחברות</title>
+    <style>
+        body { font-family: Arial; margin: 0; padding: 20px; direction: rtl; background: #f5f5f5; }
+        .container { max-width: 400px; margin: 50px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #333; text-align: center; }
+        form { margin-top: 20px; }
+        label { display: block; margin-top: 15px; font-weight: bold; color: #555; }
+        input { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; margin-top: 20px; padding: 12px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #218838; }
+        .link { text-align: center; margin-top: 15px; }
+        .link a { color: #007bff; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>התחברות</h1>
+        <form id="loginForm">
+            <label>שם משתמש</label>
+            <input type="text" name="userName" required>
+            
+            <label>סיסמה</label>
+            <input type="password" name="password" required>
+            
+            <button type="submit">התחבר</button>
+        </form>
+        <div class="link">
+            אין לך חשבון? <a href="/auth/register">הירשם</a>
+        </div>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            const res = await fetch('/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            
+            if (res.ok) {
+                const { token } = await res.json();
+                localStorage.setItem('token', token);
+                window.location.href = '/books';
+            } else {
+                alert('שגיאה בהתחברות');
+            }
+        });
+    </script>
+</body>
+</html>

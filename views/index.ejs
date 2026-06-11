@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ספרייה דיגיטלית</title>
+    <style>
+        body { font-family: Arial; margin: 0; padding: 20px; direction: rtl; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+        .container { max-width: 600px; margin: 50px auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: center; }
+        h1 { color: #333; margin-bottom: 30px; font-size: 2.5em; }
+        .link { display: inline-block; margin: 10px; padding: 15px 30px; background: #007bff; color: white; text-decoration: none; border-radius: 8px; font-size: 18px; transition: all 0.3s; }
+        .link:hover { background: #0056b3; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,123,255,0.3); }
+        .add { background: #28a745; }
+        .add:hover { background: #218838; }
+        .view { background: #17a2b8; }
+        .view:hover { background: #138496; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 ספרייה דיגיטלית</h1>
+        <p style="color: #666; font-size: 1.2em; margin-bottom: 30px;">ברוכים הבאים למערכת ניהול הספרייה</p>
+        <div>
+            <a href="/auth/register" class="link">הירשם</a>
+            <a href="/auth/login" class="link add">התחבר</a>
+            <a href="/books" class="link view">צפה בכל הספרים</a>
+        </div>
+    </div>
+</body>
+</html>

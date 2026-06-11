@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Catalog</title>
+    <style>
+        body { 
+            font-family: sans-serif; 
+            line-height: 1.6; 
+            padding: 20px; 
+            background-color: #f4f4f4; 
+        }
+        .container { 
+            max-width: 800px; 
+            margin: auto; 
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .logout-btn {
+            padding: 10px 20px;
+            background: #dc3545;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .logout-btn:hover {
+            background: #c82333;
+        }
+        .book-card {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .book-title { 
+            color: #333; 
+            margin-top: 0; 
+        }
+        .book-author { 
+            color: #666; 
+            font-style: italic; 
+        }
+        .book-id { 
+            font-size: 0.8rem; 
+            color: #999; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Book Catalog</h1>
+            <div>
+                <a href="/books/add" style="display: inline-block; margin-left: 10px; padding: 10px 20px; background: #28a745; color: white; text-decoration: none; border-radius: 5px;">+ הוסף ספר</a>
+                <a href="/auth/logout" class="logout-btn">התנתק</a>
+            </div>
+        </div>
+
+        <% if (books && books.length > 0) { %>
+            <% books.forEach(book => { %>
+                <div class="book-card">
+                    <h2 class="book-title"><a href="/books/<%= book._id %>" style="color: #333; text-decoration: none;"><%= book.title %></a></h2>
+                    <p class="book-author">By <%= book.author %></p>
+                    <p><%= book.description %></p>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p>No books found.</p>
+        <% } %>
+    </div>
+
+</body>
+</html>
